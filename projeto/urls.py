@@ -13,4 +13,5 @@ urlpatterns = [
     path('', include('projeto.core.urls')),
     path('logout/', logout_then_login, name='logout'),
     path('user/', include('projeto.accounts.urls')),
+    path('jogo/', include('projeto.jogo.urls')),
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

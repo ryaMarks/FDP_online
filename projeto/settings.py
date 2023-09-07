@@ -34,7 +34,8 @@ INSTALLED_APPS = [
     'rest_framework',
     # meus apps
     'projeto.core',
-    'projeto.accounts'
+    'projeto.accounts',
+    'projeto.jogo'
 ]
 
 MIDDLEWARE = [

@@ -90,7 +90,21 @@
               <input type="password" name="password" placeholder="Senha" required>
               <button type="submit">Entrar</button>
           </form>
+          {% for message in messages %}
+          <div class="message_class">
+            {% if 'success' in message.tags %}
+              <p class="alert alert-success" role="alert"><span style="font-weight: bold">{{ message }}</span></p>
+            {% else %}
+              <p class="alert alert-danger" role="alert"><span style="font-weight: bold">{{ message }}</span></p>
+            {% endif %}
+          </div>
+          {% endfor %}
       </div>
   </body>
-  
+  <script>
+    // Função para ocultar as mensagens após 10 segundos
+    setTimeout(function() {
+        $('.message_class').fadeOut('slow');
+    }, 5000);  // 10000 milissegundos = 10 segundos
+  </script>
 </html>

@@ -2,7 +2,8 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from datetime import datetime
 from django.utils import timezone
-from .models import UserProfile
+from .models import DisponivelPartida
+from django.contrib import messages
 
 
 # Create your views here.
@@ -11,14 +12,16 @@ def index(request):
     return render(request, 'index.html')
 
 
-def user_activity(request):
-    if request.user.is_authenticated:
-        user_profile = request.user.userprofile
-        user_profile.last_activity = datetime.now()
-        user_profile.save()
+def disponibilidade_partida(request):
+    user_profile, created = DisponivelPartida.objects.get_or_create(user=request.user)
+    user_profile.status = True  # Defina o status conforme necessário
+    user_profile.save()
+    messages.success(request, 'Solicitação registrada. Aguarde até atingir o número minimo, {}.'.format(request.user.username))
+    return render(request, 'index.html')
 
-def online_users(request):
-    # Consulta para obter todos os usuários online nos últimos 5 minutos
-    online_users = UserProfile.objects.filter(last_activity__gte=timezone.now() - timezone.timedelta(minutes=3))
-    online_users_count = online_users.count()
-    return render(request, 'online_users_count.html', {'online_users_count': online_users_count})
+def zerar_disponibilidade(request):
+    all_users = User.objects.all()
+    for signle_user in all_users:
+        user_profile, created = DisponivelPartida.objects.get_or_create(user=signle_user)
+        user_profile.status = False  # Defina o status conforme necessário
+        user_profile.save()

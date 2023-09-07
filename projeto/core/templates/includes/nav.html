@@ -7,14 +7,12 @@
   </button>
 
   <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-    <ul class="navbar-nav mr-auto">
-      <a class="nav-link" href="#" aria-haspopup="true" aria-expanded="false">Amistoso</a>
-      <a class="nav-link" href="#" aria-haspopup="true" aria-expanded="false">Campeonato</a>
-    </ul>
+    <ul class="navbar-nav mr-auto"></ul>
+
     {% if user.is_authenticated %}
-      <ul class="navbar-nav px-4">
+      <ul class="navbar-nav px-3">
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="padding-right: 30px;">Conta</a>
+          <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="padding-right: 30px;">ola, {{user.username}}</a>
           <div class="dropdown-menu" aria-labelledby="dropdown01">
             <a class="dropdown-item" href="#">Minha conta</a>
             <a class="dropdown-item" href="{% url 'admin:index' %}">Gerente</a>
