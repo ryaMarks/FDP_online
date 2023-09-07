@@ -1,0 +1,96 @@
+
+<!-- https://getbootstrap.com/docs/4.0/getting-started/introduction/#starter-template -->
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="shortcut icon" href="https://www.djangoproject.com/favicon.ico">
+    <title>Estoque</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  </head>
+
+
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        background-color: #4CAF50;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+
+      .login-container {
+        width: 300px;
+        height: 450px;
+        background-color: white;
+        border: 2px solid #000;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+      }
+
+      .login-container::before {
+        content: 'A';
+        font-size: 80px;
+        font-weight: bold;
+        position: absolute;
+        top: 0px;
+        left: 20px;
+        z-index: 1;
+      }
+
+      .login-container h2 {
+        z-index: 2;
+      }
+
+      .login-form {
+        z-index: 2;
+        text-align: center;
+      }
+
+      .login-form input {
+        width: 80%;
+        padding: 10px;
+        margin: 10px 0;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+
+      .login-form button {
+        background-color: #007BFF;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-weight: bold;
+      }
+
+      .login-form button:hover {
+        background-color: #0056b3;
+      }
+    </style>
+  </head>
+  <body>
+      <div class="login-container">
+          <h4>Login - Baralho FDP</h4>
+          <form class="login-form" action="." method="post">
+              {% csrf_token %}
+              <input type="text" name="username" placeholder="Nome de usuário" required>
+              <input type="password" name="password" placeholder="Senha" required>
+              <button type="submit">Entrar</button>
+          </form>
+      </div>
+  </body>
+  
+</html>
