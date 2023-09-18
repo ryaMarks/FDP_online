@@ -102,9 +102,11 @@
       </div>
   </body>
   <script>
-    // Função para ocultar as mensagens após 10 segundos
     setTimeout(function() {
-        $('.message_class').fadeOut('slow');
-    }, 5000);  // 10000 milissegundos = 10 segundos
+        var messages = document.querySelectorAll('.message_class');
+        messages.forEach(function(message) {
+            message.style.display = 'none';
+        });
+    }, 2000);
   </script>
 </html>

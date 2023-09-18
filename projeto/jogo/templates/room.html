@@ -3,18 +3,15 @@
 {% block content %}
 <div class="container">
   <div class="jumbotron">
-    <h1>Bem-vindo!</h1>
-    <p>
-      <a href="{% url 'jogo:room' %}"><button type="button" id="enter" class="btn btn-secondary">Criar Sala</button></a>
-      <input id="username" type="hidden" name="username" value="{{request.user.username}}">
-    </p>
-    <p>
-      <form id="form_room">
-        <input type="text" id="value_text" name="link_room" placeholder="Entre com o ID da sala"/>
-        <button type="button" id="btn" class="btn btn-success">Entrar</button>
-      </form>
-    </p>
+    <h2>Pagina 3, espere alguem entrar para iniciar jogo</h2>
+    <button type="button" id="room_id" class="btn btn-secondary">Gerar ID da sala</button>
+    <a href=""><button type="button" class="btn btn-primary">Iniciar jogo</button></a>
   </div>
+  <form>
+    <input type="text" id="value_text" name="link_room" placeholder="Digite uma mensagem"/>
+    <input id="username" type="hidden" name="username" value="{{request.user.username}}">
+    <button type="button" id="btn" class="btn btn-success">Enviar</button>
+  </form>
   <div id="messages"></div>
   {% for message in messages %}
   <div class="message_class" style="width: 60%;">
@@ -26,15 +23,7 @@
   </div>
   {% endfor %}
 </div>
-
 <script>
-  // oculta mensagens depois de um tempo
-  setTimeout(function() {
-      var messages = document.querySelectorAll('.message_class');
-      messages.forEach(function(message) {
-          message.style.display = 'none';
-      });
-  }, 2000);
 
   // recebe mensagem do backend via websocket e exibe na div messages
   let url = `ws://${window.location.host}/ws/socket-server/` // cuidado com esse endereço local
@@ -66,11 +55,5 @@
     }
   })
 
-  const btn_enter = document.getElementById('enter')
-  btn_enter.addEventListener('click', function(){
-    chatSocket.send(JSON.stringify({
-      'message': 'conectar'
-    }))
-  })
 </script>
 {% endblock content %}

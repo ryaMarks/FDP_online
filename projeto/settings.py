@@ -1,11 +1,9 @@
 
-
 from pathlib import Path
 import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
@@ -22,16 +20,21 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    # apps de terceiros
+    'bootstrapform',
+    'widget_tweaks',
+    'rest_framework',
+    'channels',
+    'daphne',
+
+    # apps do django
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # apps de terceiros
-    'bootstrapform',
-    'widget_tweaks',
-    'rest_framework',
+    
     # meus apps
     'projeto.core',
     'projeto.accounts',
@@ -66,6 +69,7 @@ TEMPLATES = [
     },
 ]
 
+ASGI_APPLICATION = "projeto.asgi.application"
 WSGI_APPLICATION = 'projeto.wsgi.application'
 
 
@@ -99,10 +103,6 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
-AUTHENTICATION_BACKENDS = [
-    'projeto.accounts.backends.EmailOrUserBackend',
-]
-
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
@@ -128,3 +128,12 @@ LOGOUT_REDIRECT_URL = 'accounts:login'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# channels websocket communication
+CHANNEL_LAYERS = {
+ "default": {
+    "BACKEND": "channels.layers.InMemoryChannelLayer",
+    # "ROUTING": "projeto.jogo.channel_routing",
+ },
+}
